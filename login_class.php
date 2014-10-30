@@ -8,6 +8,27 @@
 
 include_once 'conf/psl-config.php';
 
-echo HOST;
+class login {
+    
+    protected static $connection;
+    
+    public function connectDb ()
+    {
+        if (isset(self::$connection))
+        {
+            self::$connection = new mysqli(HOST,USER,PASSWORD,DATABASE);
+        }
+        if (self::$connection->connect_error)
+        {
+            die("Could not connect to the MySQL server at localhost.");
+        }        
+        
+        return self::$connection;
+    }
+    
+    
+    
+    
+}
 
 ?>
